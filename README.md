@@ -11,7 +11,7 @@
 - Python
 - Django
 - Django REST Framework
-- PostgreSQL
+- SQLite
 - JWT Authentication
 
 ## 🔗 API Endpoints
