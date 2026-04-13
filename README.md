@@ -1,10 +1,18 @@
 # User Management API (Django + DRF)
 
+📌 Project Overview
+
+This is a backend API system built using Django and Django REST Framework.
+It provides user authentication, role-based access control, and secure API handling using JWT.
+
 ## 🚀 Features
 - User Registration
 - JWT Authentication (Login)
 - Role-Based Access Control (Admin/User)
 - CRUD APIs for Users
+- Current Logged-in User API
+- Secure Password Hashing
+- Input Validation
 - Pagination & Permissions
 
 ## 🛠 Tech Stack
@@ -21,10 +29,11 @@ POST /api/users/register/
 POST /api/token/
 
 ### Users
-GET /api/users/
+GET /api/users/(Admin only)
 GET /api/users/{id}/
 PUT /api/users/{id}/
-DELETE /api/users/{id}/
+DELETE /api/users/{id}/(Admin only)
+GET /api/users/me/
 
 ## 🔒 Permissions
 - Admin users can view and delete all users
@@ -53,6 +62,15 @@ Response:
 "role": "user"
 }
 
+🔐 Authentication Usage
+
+Include JWT token in headers:
+
+Authorization: Bearer <access_token>
+
+📈 Future Improvements
+
+Deploy on cloud (AWS / Render)
 ## ⚙️ Setup
 ```bash
 git clone <repo-url>
