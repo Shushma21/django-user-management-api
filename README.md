@@ -29,7 +29,7 @@ DELETE /api/users/{id}/
 ## 🔒 Permissions
 - Admin users can view and delete all users
 - Normal users can only access their own data
-## ⚙️ Setup
+
 
 ## 📌 Sample API Request
 
@@ -53,6 +53,7 @@ Response:
 "role": "user"
 }
 
+## ⚙️ Setup
 ```bash
 git clone <repo-url>
 cd project
