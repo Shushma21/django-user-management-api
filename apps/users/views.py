@@ -1,6 +1,6 @@
 from  rest_framework.generics import CreateAPIView
 from .models import User
-from .serializers import  UserSerializer
+from .serializers import  UserSerializer,RegisterSerializer
 from .permissions import IsAdminUserRole
 from  rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view,permission_classes
@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 
 class RegisterUserAPIView(CreateAPIView):
 	queryset = User.objects.all()
-	serializer_class = UserSerializer
+	serializer_class = RegisterSerializer
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated,IsAdminUserRole])
