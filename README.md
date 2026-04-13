@@ -14,6 +14,8 @@ It provides user authentication, role-based access control, and secure API handl
 - Secure Password Hashing
 - Input Validation
 - Pagination & Permissions
+- Filtering (by role)
+- Search (username, email)
 
 ## 🛠 Tech Stack
 - Python
