@@ -26,14 +26,10 @@ GET /api/users/{id}/
 PUT /api/users/{id}/
 DELETE /api/users/{id}/
 
+## 🔒 Permissions
+- Admin users can view and delete all users
+- Normal users can only access their own data
 ## ⚙️ Setup
-
-```bash
-git clone <repo-url>
-cd project
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
 
 ## 📌 Sample API Request
 
@@ -56,3 +52,13 @@ Response:
 "email": "[shushma@gmail.com](mailto:shushma@gmail.com)",
 "role": "user"
 }
+
+```bash
+git clone <repo-url>
+cd project
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+
+
+
