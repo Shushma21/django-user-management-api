@@ -25,3 +25,8 @@ class UserViewSet(ModelViewSet):
 		if self.action in['list','destroy']:
 			return[IsAuthenticated(),IsAdminUserRole()]
 		return [IsAuthenticated()]
+
+	def get_queryset(self):
+		if self.request.user.role == 'admin':
+			return User.objects.all()
+		return User.objects.filter(id=self.request.user.id)
