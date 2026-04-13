@@ -51,6 +51,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+	'DEFAULT_AUTHENTICATION_CLASSES':(
+			'rest_framework_simplejwt.authentication.JWTAuthentication',
+		),
+	}
+
 ROOT_URLCONF = 'django_user_management_api.urls'
 
 AUTH_USER_MODEL = 'users.User'
@@ -66,7 +72,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-        },
+        },	
     },
 ]
 
