@@ -39,6 +39,10 @@ GET /api/users/me/
 - Admin users can view and delete all users
 - Normal users can only access their own data
 
+## 📈 Future Improvements
+
+Deploy on cloud (AWS / Render)
+
 
 ## 📌 Sample API Request
 
@@ -68,9 +72,6 @@ Include JWT token in headers:
 
 Authorization: Bearer <access_token>
 
-📈 Future Improvements
-
-Deploy on cloud (AWS / Render)
 ## ⚙️ Setup
 ```bash
 git clone <repo-url>
