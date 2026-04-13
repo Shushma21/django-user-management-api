@@ -7,6 +7,8 @@ from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import status
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
 class RegisterUserAPIView(CreateAPIView):
 	queryset = User.objects.all()
@@ -35,6 +37,9 @@ def current_user(request):
 class UserViewSet(ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
+	filter_backends = [DjangoFilterBackend,SearchFilter]
+	filterset_fields = ['role']
+	search_fields = ['username','email']
 	
 	def get_permissions(self):
 		if self.action in['list','destroy']:
@@ -46,3 +51,13 @@ class UserViewSet(ModelViewSet):
 			return User.objects.all()
 		return User.objects.filter(id=self.request.user.id)
 
+	def list(self, request, *args, **kwargs):
+		queryset = self.filter_queryset(self.get_queryset())
+		page 	= self.paginate_queryset(queryset)
+
+		if page is not None:
+			serializer = self.get_serializer(page, many=True)
+			return self.get_paginated_response({"status": "success", "data": serializer.data})
+
+		serializer = self.get_serializer(queryset, many=True)
+		return Response({"status": "success","data": serializer.data})
