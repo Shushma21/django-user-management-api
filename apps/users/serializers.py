@@ -20,9 +20,13 @@ class RegisterSerializer(serializers.ModelSerializer):
 	def validate_email(self,value):
 		if User.objects.filter(email=value).exists():
 			raise serializers.ValidationError("Email already exists")
+		if "@" not in value:
+			raise serializers.ValidationError("Enter a valid email address")
 		return value
 
 	def validate_password(self,value):
+		if len(value) < 6:
+			raise serializers.ValidationError("Password must be atleast 6 characters")
 		validate_password(value)
 		return value
 
