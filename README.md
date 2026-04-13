@@ -34,3 +34,25 @@ cd project
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
+## 📌 Sample API Request
+
+### Register User
+
+POST /api/users/register/
+
+Request:
+{
+"username": "shushma",
+"email": "[shushma@gmail.com](mailto:shushma@gmail.com)",
+"password": "test123",
+"role": "user"
+}
+
+Response:
+{
+"id": 1,
+"username": "shushma",
+"email": "[shushma@gmail.com](mailto:shushma@gmail.com)",
+"role": "user"
+}
