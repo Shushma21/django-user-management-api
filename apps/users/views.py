@@ -16,6 +16,12 @@ class RegisterUserAPIView(CreateAPIView):
 def admin_only(request):
         return Response({"message":"Only admin can access this"})
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated,IsAdminUserRole])
+def current_user(request):
+	serializer = UserSerializer(request.user)
+	return Response(serializer.data)
+
 
 class UserViewSet(ModelViewSet):
 	queryset = User.objects.all()
