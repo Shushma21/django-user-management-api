@@ -1,21 +1,31 @@
 from rest_framework import serializers
-#from .models import UserProfile
 from .models import User
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.password_validation import validate_password
 
-#class UserProfileSerializer(serializers.ModelSerializer):
+# For reading user data
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
-#		model = UserProfile
 		model = User
-		#fields = '__all__'
-		fields = ['id','username','email','password','role']
+		fields = ['id','username','email','role']
+
+# For registration
+class RegisterSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = User
+		fields = ['username','email','password','role']
 		extra_kwargs = {
 			'password':{'write_only':True}
 		}
+	
+	def validate_email(self,value):
+		if User.objects.filter(email=value).exists():
+			raise serializers.ValidationError("Email already exists")
+		return value
+
+	def validate_password(self,value):
+		validate_password(value)
+		return value
 
 	def create(self,validated_data):
-		#validated_data['password'] = make_password(validated_data['password'])
 		user = User.objects.create_user(**validated_data)     #create_user() handles  hashing automatically
-		#return super().create(validated_data)
 		return user
