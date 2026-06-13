@@ -20,8 +20,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 	def validate_email(self,value):
 		if User.objects.filter(email=value).exists():
 			raise serializers.ValidationError("Email already exists")
-		if "@" not in value:
-			raise serializers.ValidationError("Enter a valid email address")
+		# if "@" not in value:
+		# 	raise serializers.ValidationError("Enter a valid email address")
 		return value
 
 	def validate_password(self,value):

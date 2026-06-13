@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView,)
+from drf_spectacular.views import SpectacularAPIView,SpectacularSwaggerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/',include('apps.users.urls')),
     path('api/token/',TokenObtainPairView.as_view()),
     path('api/token/refresh/',TokenRefreshView.as_view()),
+    path('api/schema/',SpectacularAPIView.as_view(),name = 'schema'),             #generates a raw JSON/YAML file describing entire API
+    path('api/docs/',SpectacularSwaggerView.as_view()),         #uses the schema to show a interactice UI
 ]

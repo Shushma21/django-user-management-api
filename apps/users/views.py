@@ -28,7 +28,7 @@ def admin_only(request):
         return Response({"status":"success","message":"Only admin can access this"})
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated,IsAdminUserRole])
+@permission_classes([IsAuthenticated])
 def current_user(request):
 	serializer = UserSerializer(request.user)
 	return Response({"status":"success","data":serializer.data})
@@ -42,13 +42,13 @@ class UserViewSet(ModelViewSet):
 	search_fields = ['username','email']
 	
 	def get_permissions(self):
-		if self.action in['list','destroy']:
+		if self.action in['list','destroy','update','partial_update']:
 			return[IsAuthenticated(),IsAdminUserRole()]
 		return [IsAuthenticated()]
 
 	def get_queryset(self):
 		if self.request.user.role == 'admin':
-			return User.objects.all()
+			return User.objects.all().order_by('id')
 		return User.objects.filter(id=self.request.user.id)
 
 	def list(self, request, *args, **kwargs):
