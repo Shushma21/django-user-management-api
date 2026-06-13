@@ -11,5 +11,5 @@ db.sqlite3
 # OS files (optional)
 .DS_Store
 
-# Environment variables — never push to GitHub!
+# Environment variables 
 .env
