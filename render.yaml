@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: django-user-management-api
+    runtime: python
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true       # Render auto-generates a secure secret key
+      - key: DEBUG
+        value: False
+      - key: DATABASE_URL
+        fromDatabase:
+          name: django-user-management-db
+          property: connectionString
+
+databases:
+  - name: django-user-management-db
+    databaseName: userdb
+    user: userdb_admin
