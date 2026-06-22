@@ -19,7 +19,7 @@ A backend REST API built with Django and Django REST Framework for user authenti
 - Python
 - Django
 - Django REST Framework
-- SQLite
+- SQLite (development) / PostgreSQL (production)
 - JWT Authentication (SimpleJWT)
 - drf-spectacular (Swagger)
 
