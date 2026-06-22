@@ -26,4 +26,5 @@ urlpatterns = [
     path('api/token/refresh/',TokenRefreshView.as_view()),
     path('api/schema/',SpectacularAPIView.as_view(),name = 'schema'),             #generates a raw JSON/YAML file describing entire API
     path('api/docs/',SpectacularSwaggerView.as_view()),         #uses the schema to show a interactice UI
+    path('',SpectacularSwaggerView.as_view()),
 ]
